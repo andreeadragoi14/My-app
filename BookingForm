@@ -1,0 +1,77 @@
+import {useState} from "react";
+import "./App.css";
+import Main from "./Main";
+
+
+function BookingForm() {
+  const [date, setDate] = useState("")
+  const [guests, setNumberOfGuests] = useSate("")
+  const [occasion, setOccasion] = useState("")
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted!')
+  }
+
+  return(
+    <div className="BookingForm">
+<form onSubmit={handleSubmit}>
+  <fieldset>
+    <div className="Field">
+      <label>Choose date</label>
+      <input
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+        type="date"
+        />
+    </div>
+
+    <div className="Field">
+      <label>Choose time</label>
+      <select
+             value="time"
+             onChange={(e) => availableTimes(e.target.value)}>
+        <option>17:00</option>
+        <option>18:00</option>
+        <option>19:00</option>
+        <option>20:00</option>
+        <option>21:00</option>
+        <option>22:00</option>
+      </select>
+    </div>
+
+    <div className="Field">
+      <label>Number of guests</label>
+      <input
+      type="number"
+      placeholder="1"
+      min="1"
+      max="10"
+      value={guests}
+      onChange={(e) => setNumberOfGuests(e.target.value)}
+      />
+    </div>
+
+    <div className="Field">
+      <label>Occasion</label>
+      <select
+          value={occasion}
+          onChange={(e) => setOccasion(e.target.value)}>
+        <option value="occasion">Occasion</option>
+        <option value="birthday">Birthday</option>
+        <option value="anniversary">Anniversary</option>
+      </select>
+    </div>
+
+    <button
+    type="Submit"
+    value="Make Your reservation">
+      Submit
+    </button>
+  </fieldset>
+</form>
+    </div>
+  );
+}
+
+export default BookingForm;
